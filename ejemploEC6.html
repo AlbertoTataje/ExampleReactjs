@@ -1,35 +1,92 @@
-<!DOCTYPE html>
+
 <html>
-<head>
-	<title>Reactive JS</title>
+  <head>
+    <title>Curso Platzi - React.js</title>
+    
+  </head>
+  <body>
+    <div id="container"></div>
+    
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+    <script type="text/jsx;harmony=true">
+      
+      var pokemons = [
+        {
+          number: 1,
+          name: 'Bulbasaur'
+        },
+        {
+          number: 2,
+          name: 'Ivysaur'
+        },
+        {
+          number: 3,
+          name: 'Venusaur'
+        },
+        {
+          number: 4,
+          name: 'Charmander'
+        },
+        {
+          number: 5,
+          name: 'Charmeleon'
+        },
+        {
+          number: 6,
+          name: 'Charizard'
+        },
+        {
+          number: 7,
+          name: 'Squirtle'
+        },
+        {
+          number: 8,
+          name: 'Wartortle'
+        },
+        {
+          number: 9,
+          name: 'Blastoise'
+        }
+      ]
 
-</head>
-<body>
-	<section id="container"></section>
-	
-	<script src="https://fb.me/react-0.13.3.js"></script>
-	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
-	<script type="text/jsx;harmony=true">
+      class PokeAvatar extends React.Component {
+        constructor(props) {
+          super(props);
+          //this.props.number = numero de pokemon a mostrar
+          this.url = `http://veekun.com/dex/media/pokemon/main-sprites/x-y/${this.props.number}.png`;
+        }
 
-	    // usando EcmaScript6 forma de clase
-		class HolaMundoReactiveComponent extends React.Component{
-		      render() {
-		      return <h1>Hola mundo ReactiveJS  con {this.props.name} con edad {this.props.edad}</h1>
-		      }
-		}
+        render() {
+          return <div className="avatar">
+            <img src={this.url} />
+          </div>
+        }
+      }
 
-		//validar los atributos
-		HolaMundoReactiveComponent.propTypes = {
-			name : React.PropTypes.string,
-			edad : React.PropTypes.number,
-		};
+      class PokeRow extends React.Component {
+        render() {
+          return <li className="pokerow">
+            <PokeAvatar number={this.props.number} />
+            {this.props.name}
+          </li>
+        }
+      }
 
-		React.render(<HolaMundoReactiveComponent name="Alberto" con edad={24}/>, document.getElementById('container'));	
+      class PokeTable extends React.Component {
+        render() {
+          return <ul className="poketable">
+            {
+              this.props.pokemons.map((pokemon) => {
+                return <PokeRow key={pokemon.number} name={pokemon.name} number={pokemon.number} />;
+              })
+            }
+          </ul>
+        }
+      }
 
-		setTimeout(function(){
-			React.render(<HolaMundoReactiveComponent name="Luis" edad={24}/>, document.getElementById('container'));				
-		},5000)
-
-	</script>
-</body>
+      //1
+      React.render(<PokeTable pokemons={pokemons} />, document.getElementById('container'));
+    </script>
+  </body>
 </html>
