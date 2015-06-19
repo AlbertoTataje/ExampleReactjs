@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reactive JS</title>
+
+</head>
+<body>
+	<section id="container"></section>
+	
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+	<script type="text/jsx;harmony=true">
+
+	    // usando EcmaScript6 forma de clase
+		class HolaMundoReactiveComponent extends React.Component{
+		      render() {
+		      return <h1>Hola mundo ReactiveJS  con {this.props.name} con edad {this.props.edad}</h1>
+		      }
+		}
+
+		//validar los atributos
+		HolaMundoReactiveComponent.propTypes = {
+			name : React.PropTypes.string,
+			edad : React.PropTypes.number,
+		};
+
+		React.render(<HolaMundoReactiveComponent name="Alberto" con edad={24}/>, document.getElementById('container'));	
+
+		setTimeout(function(){
+			React.render(<HolaMundoReactiveComponent name="Luis" edad={24}/>, document.getElementById('container'));				
+		},5000)
+
+	</script>
+</body>
+</html>

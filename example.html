@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reactive JS</title>
+
+</head>
+<body>
+	<section id="container"></section>
+	
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+	<script type="text/jsx">
+
+	    //EcmaScript 5
+		var HolaMundoReactiveComponent	 = React.createClass({
+		      
+			  propTypes:{
+			  	name : React.PropTypes.string,
+			  	edad : React.PropTypes.number
+			  },
+
+		      render : function() {
+		      return <h1>Hola mundo ReactiveJS {this.props.name} con {this.props.edad} annios</h1>
+		   }
+		});
+
+		React.render(<HolaMundoReactiveComponent name="ALberto" edad={24}/>, document.getElementById('container'));	
+	</script>
+</body>
+</html>
